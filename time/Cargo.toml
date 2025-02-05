@@ -55,6 +55,7 @@ num-conv = { workspace = true }
 powerfmt = { workspace = true }
 quickcheck = { workspace = true, optional = true }
 rand = { workspace = true, optional = true }
+rusqlite = { workspace = true }
 serde = { workspace = true, optional = true }
 time-core = { workspace = true }
 time-macros = { workspace = true, optional = true }
