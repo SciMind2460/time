@@ -1438,6 +1438,28 @@ impl Add<Duration> for Date {
     }
 }
 
+impl ToSql for Date {
+    fn to_sql(&self) -> Result<ToSqlOutput<'_>> {
+        let (year, month_t, day) = self.to_calendar_date();
+        let month = match month_t {
+            Month::January => "01",
+            Month::February => "02",
+            Month::March => "03",
+            Month::April => "04",
+            Month::May => "05",
+            Month::June => "06",
+            Month::July => "07",
+            Month::August => "08",
+            Month::September => "09",
+            Month::October => "10",
+            Month::November => "11",
+            Month::December => "12",
+        };
+        formatted_date = format!("{year}-{month}-{day}");
+        Ok(ToSqlOutput::Owned(Value::Text(formatted_date)))
+    }
+}
+
 impl Add<StdDuration> for Date {
     type Output = Self;
 
